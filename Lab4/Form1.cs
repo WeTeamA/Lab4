@@ -216,6 +216,156 @@ namespace Lab4
                     output.Enqueue(stack.Pop());
             return output;
         }
+        public abstract class Operation
+        {
+            public abstract object Calculate(object[] args);
+        }
+        public class FloatValue : Operation
+        {
+            public double value;
+            public override object Calculate(object[] args)
+            {
+                return value;
+            }
+            public FloatValue(double value)
+            {
+                this.value = value;
+            }
+        }
+        public class BoolValue : Operation
+        {
+            public bool value;
+            public override object Calculate(object[] args)
+            {
+                return value;
+            }
+            public BoolValue(bool value)
+            {
+                this.value = value;
+            }
+        }
+        public delegate bool Comparsion(double a, double b);
+        public delegate double FloatOp1(double a);
+        public delegate double FloatOp2(double a, double b);
+        public delegate double BoolOp1(bool a);
+        public delegate double BoolOp2(bool a, bool b);
+        public class FloatOperation1 : Operation
+        {
+            public FloatOp1 operation;
+            public FloatOperation1(FloatOp1 operation)
+            {
+                this.operation = operation;
+            }
+            public override object Calculate(object[] args)
+            {
+                return operation((double)args[0]);
+            }
+        }
+
+        public class FloatOperation2 : Operation
+        {
+            public FloatOp2 operation;
+            public FloatOperation2(FloatOp2 operation)
+            {
+                this.operation = operation;
+            }
+            public override object Calculate(object[] args)
+            {
+                return operation((double)args[0], (double)args[1]);
+            }
+        }
+        public class BoolOperation1 : Operation
+        {
+            public BoolOp1 operation;
+            public BoolOperation1(BoolOp1 operation)
+            {
+                this.operation = operation;
+            }
+            public override object Calculate(object[] args)
+            {
+                return operation((bool)args[0]);
+            }
+        }
+
+        public class BoolOperation2 : Operation
+        {
+            public BoolOp2 operation;
+            public BoolOperation2(BoolOp2 operation)
+            {
+                this.operation = operation;
+            }
+            public override object Calculate(object[] args)
+            {
+                return operation((bool)args[0], (bool)args[1]);
+            }
+        }
+
+
+        GenericTreeNode<Operation> CreateSyntaxTree(Queue<Token> input)
+        {
+            Stack<GenericTreeNode<Operation>> opStack = new Stack<GenericTreeNode<Operation>>();
+            GenericTreeNode<Operation> operation;
+            while (input.Count > 0)
+            {
+                Token current = input.Dequeue();
+                switch (current.Type)
+                {
+                    case TokenType.Value:
+                        operation = new GenericTreeNode<Operation>();
+                        operation.data = new FloatValue(double.Parse(current.TokenText, CultureInfo.InvariantCulture));
+                        opStack.Push(operation);
+                        break;
+                    case TokenType.Operation:
+                        operation = new GenericTreeNode<Operation>();
+                        switch (current.TokenText)
+                        {
+                            case "+":
+                                operation.data = new FloatOperation2((a, b) => a + b);
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Reverse();
+                                break;
+                            case "-":
+                                operation.data = new FloatOperation2((a, b) => a - b);
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Reverse();
+                                break;
+                            case "*":
+                                operation.data = new FloatOperation2((a, b) => a * b);
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Reverse();
+                                break;
+                            case "/":
+                                operation.data = new FloatOperation2((a, b) => a / b);
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Add(opStack.Pop());
+                                operation.children.Reverse();
+                                break;
+                            default:
+                                throw new EvaluatorException(current.TokenStart, "Неизвестная операция: " + current.TokenText);
+                        }
+                        opStack.Push(operation);
+                        break;
+                }
+            }
+            if (opStack.Count > 1)
+                throw new Exception();
+            else if (opStack.Count == 1)
+                return opStack.Pop();
+            else
+                return null;
+        }
+
+
+        object CalcTree(GenericTreeNode<Operation> root)
+        {
+            object[] args = new object[root.children.Count];
+            for (int i = 0; i < args.Length; i++)
+                args[i] = CalcTree(root.children[i]);
+            return root.data.Calculate(args);
+        }
 
 
 
