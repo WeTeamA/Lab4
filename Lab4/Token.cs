@@ -9,9 +9,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Lab4
 {
-
         internal enum TokenType { None, Value, Operation, LBracket, RBracket, Negative, Const, Function, Separator };
-
         internal class Token
         {
             public TokenType Type;
@@ -43,22 +41,6 @@ namespace Lab4
             {
                 Queue<Token> tokens = new Queue<Token>();
                 TokenType currentToken = TokenType.None;
-            /*List<List<string>> Constants = new List<List<string>>();
-            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workBook;
-            Microsoft.Office.Interop.Excel.Worksheet workSheet;
-            workBook = excelApp.Workbooks.Open(@"C:\Users\lebox\Desktop\Учеба\ООП\Лаб.4\Lab.40\Lab4\Lab4\bin\Debug\Constants.xlsx");
-            workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets.get_Item(1);
-            int count = 1;
-            while (workSheet.Cells[count, 1].Text != "")
-            {
-                Constants.Add(new List<string> { workSheet.Cells[count, 1].Text, workSheet.Cells[count, 2].Text.Replace(",", ".") });
-                count++;
-            }
-            workBook.Save();
-            workBook.Close();
-            */
-            //Functions Constants = new Functions("const.dat");
                 string value = @"^(?<value>-?[0-9]*\.?[0-9]+)";
                 string operation = @"^(?<operator>(\*\*|\+|\-|\*|\/|\%|\=|\>\=|\<\=|\>|\<|\!\=|\&|\||\^|\!))";
                 string function = @"^(?<sign>-?)(?<func>(min|max|round|trunc|floor|ceil|sin|cos|tan|cotan|arcsin|arccos|arctan|ln|abs|sign))";

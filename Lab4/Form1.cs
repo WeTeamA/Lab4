@@ -19,8 +19,8 @@ namespace Lab4
         public Form1()
         {
             InitializeComponent();
-
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             int start = textBox1.SelectionStart;
@@ -77,12 +77,9 @@ namespace Lab4
         private void buttonAdd_const_Click(object sender, EventArgs e)
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-            // Создаём экземпляр рабочий книги Excel
             Microsoft.Office.Interop.Excel.Workbook workBook;
-            // Создаём экземпляр листа Excel
             Microsoft.Office.Interop.Excel.Worksheet workSheet;
-
-            workBook = excelApp.Workbooks.Open(@"C:\Users\lebox\Desktop\Учеба\ООП\Лаб.4\Lab.40\Lab4\Lab4\bin\Debug\Constants.xlsx");
+            workBook = excelApp.Workbooks.Open(@"C:\Users\Михаил\Google Диск\Учеба\Третий семестр\ООП\Лабораторная работа №4\Lab4\Lab4\bin\Debug\Constants.xlsx");//Свой путь прописать (и может быть создать excel таблицу Constants.xlsx)
             workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets.get_Item(1);
             int count = 1;
             while (workSheet.Cells[count, 1].Text != "")             
@@ -100,19 +97,13 @@ namespace Lab4
             workBook.Close();
         }
 
-        public void RefreshListBox()
-        {
-        
-            
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook workBook;
             Microsoft.Office.Interop.Excel.Worksheet workSheet;
-            workBook = excelApp.Workbooks.Open(@"C:\Users\lebox\Desktop\Учеба\ООП\Лаб.4\Lab.40\Lab4\Lab4\bin\Debug\Constants.xlsx");
+            workBook = excelApp.Workbooks.Open(@"C:\Users\Михаил\Google Диск\Учеба\Третий семестр\ООП\Лабораторная работа №4\Lab4\Lab4\bin\Debug\Constants.xlsx");//Свой путь прописать (и может быть создать excel таблицу Constants.xlsx)
             workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets.get_Item(1);
             int count = 1;
             while (workSheet.Cells[count, 1].Text != "")
