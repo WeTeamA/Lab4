@@ -21,6 +21,7 @@ namespace Lab4
             InitializeComponent();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             int start = textBox1.SelectionStart;
@@ -115,6 +116,94 @@ namespace Lab4
             }
             workBook.Save();
             workBook.Close();
+            buttonAdd_const.Enabled = false;
+        }
+
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar)
+                || (e.KeyChar == '.')
+                || (e.KeyChar == ',')
+                || (e.KeyChar == ',')
+                || (e.KeyChar == '/')
+                || (e.KeyChar == ';')
+                || (e.KeyChar == ':')
+                || (e.KeyChar == '}')
+                || (e.KeyChar == ']')
+                || (e.KeyChar == '[')
+                || (e.KeyChar == '{')
+                || (e.KeyChar == '=')
+                || (e.KeyChar == '+')
+                || (e.KeyChar == '-')
+                || (e.KeyChar == '_')
+                || (e.KeyChar == ')')
+                || (e.KeyChar == '(')
+                || (e.KeyChar == '*')
+                || (e.KeyChar == '&')
+                || (e.KeyChar == '?')
+                || (e.KeyChar == '^')
+                || (e.KeyChar == '%')
+                || (e.KeyChar == '$')
+                || (e.KeyChar == '#')
+                || (e.KeyChar == '№')
+                || (e.KeyChar == '"')
+                || (e.KeyChar == '@')
+                || (e.KeyChar == '!')
+                || (e.KeyChar == '~')
+                || (e.KeyChar == '>')
+                || (e.KeyChar == '<')
+                || (e.KeyChar == ' '))
+            { 
+                e.Handled = true;
+            }                  
+        }
+
+        private void textBoxValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar)
+            || (e.KeyChar == '/')
+            || (e.KeyChar == ';')
+            || (e.KeyChar == ':')
+            || (e.KeyChar == '}')
+            || (e.KeyChar == ']')
+            || (e.KeyChar == '[')
+            || (e.KeyChar == '{')
+            || (e.KeyChar == '=')
+            || (e.KeyChar == '+')
+            || (e.KeyChar == '-')
+            || (e.KeyChar == '_')
+            || (e.KeyChar == ')')
+            || (e.KeyChar == '(')
+            || (e.KeyChar == '*')
+            || (e.KeyChar == '&')
+            || (e.KeyChar == '?')
+            || (e.KeyChar == '^')
+            || (e.KeyChar == '%')
+            || (e.KeyChar == '$')
+            || (e.KeyChar == '#')
+            || (e.KeyChar == '№')
+            || (e.KeyChar == '"')
+            || (e.KeyChar == '@')
+            || (e.KeyChar == '!')
+            || (e.KeyChar == '~')
+            || (e.KeyChar == '>')
+            || (e.KeyChar == '<')
+            || (e.KeyChar == ' '))
+            { e.Handled = true; }
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "" || textBoxValue.Text == "")
+                buttonAdd_const.Enabled = false;
+            else buttonAdd_const.Enabled = true;
+        }
+
+        private void textBoxValue_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "" || textBoxValue.Text == "")
+                buttonAdd_const.Enabled = false;
+            else buttonAdd_const.Enabled = true;
         }
     }
 }

@@ -677,6 +677,8 @@
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(110, 20);
             this.textBoxName.TabIndex = 55;
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            this.textBoxName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxName_KeyPress);
             // 
             // textBoxValue
             // 
@@ -684,6 +686,8 @@
             this.textBoxValue.Name = "textBoxValue";
             this.textBoxValue.Size = new System.Drawing.Size(110, 20);
             this.textBoxValue.TabIndex = 56;
+            this.textBoxValue.TextChanged += new System.EventHandler(this.textBoxValue_TextChanged);
+            this.textBoxValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxValue_KeyPress);
             // 
             // buttonAdd_const
             // 
