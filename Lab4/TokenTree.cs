@@ -99,12 +99,12 @@ namespace Lab4
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);
                                 break;
-                            case "tan":
+                            case "tg":
                                 operation.Value = new FloatOperation1(x => Math.Tan(x * multiplier));
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);
                                 break;
-                            case "cotan":
+                            case "ctg":
                                 operation.Value = new FloatOperation1(x => Math.Cos(x * multiplier) / Math.Sin(x * multiplier));
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);
@@ -119,7 +119,7 @@ namespace Lab4
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);
                                 break;
-                            case "arctan":
+                            case "arctg":
                                 operation.Value = new FloatOperation1(x => Math.Atan(x * multiplier));
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);

@@ -43,7 +43,7 @@ namespace Lab4
                 TokenType currentToken = TokenType.None;
                 string value = @"^(?<value>-?[0-9]*\.?[0-9]+)";
                 string operation = @"^(?<operator>(\*\*|\+|\-|\*|\/|\%|\=|\>\=|\<\=|\>|\<|\!\=|\&|\||\^|\!))";
-                string function = @"^(?<sign>-?)(?<func>(min|max|round|trunc|floor|ceil|sin|cos|tan|cotan|arcsin|arccos|arctan|ln|abs|sign))";
+                string function = @"^(?<sign>-?)(?<func>(min|max|round|trunc|floor|ceil|sin|cos|tg|ctg|arcsin|arccos|arctg|ln|abs|sign))";
                 expression = expression.Replace(' ', '\0');
                 while (expression.Length > 0)
                 {
