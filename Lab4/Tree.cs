@@ -4,32 +4,20 @@ using System.Collections;
 
 namespace Lab4
 {
-    /// <summary>
-    /// Класс, описывающий структуру дерево
-    /// Внутри содержится класс Node, описывающий узел дерева
-    /// </summary>
+
     public class Tree<T> : IEnumerable
     {
         public class Node : IEnumerable<Node>
         {
-            /// <summary>Родительский элемент</summary>
             public Node Parent;
-
-            /// <summary>Значение </summary>
             public T Value;
-
-            /// <summary>Дочерние элементы </summary>
             public readonly List<Node> Children = new List<Node>();
-
             public Node() { }
-
             public Node(Node parent, T value)
             {
                 Parent = parent;
                 Value = value;
             }
-
-
             /// <summary>
             /// Добавление узла с указанным значением в дерево
             /// </summary>
@@ -38,7 +26,6 @@ namespace Lab4
             {
                 this.Children.Add(new Node(this, value));
             }
-
             /// <summary>
             /// Добавление узла с указанным значением в дерево
             /// </summary>
@@ -47,14 +34,11 @@ namespace Lab4
             {
                 this.Children.Add(node);
             }
-
             /// <summary>Удаляет узел и его дочерние</summary>
             public void RemoveAll()
             {
                 this.Parent.Children.Remove(this);
             }
-
-
             /// <summary>
             /// Удаляет узел c переносом дочерних элементов
             /// в родительский данного узла
@@ -72,7 +56,6 @@ namespace Lab4
 
                 this.RemoveAll();
             }
-
             /// <summary>
             /// Добавляет дочерний элемент к текущему
             /// </summary>
@@ -82,13 +65,10 @@ namespace Lab4
                 child.Parent = this;
                 this.Children.Add(child);
             }
-
-
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
             }
-
             public IEnumerator<Node> GetEnumerator()
             {
                 if (this == null)
@@ -99,20 +79,15 @@ namespace Lab4
                         yield return node;
             }
         }
-
-
         private Node _root;
-
         /// <summary>Корень дерева</summary>
         public Node Root { get { return _root; } }
-
         /// <summary>
         /// Добавление узла в дерево
         /// (Если родитель = null, значение записывается в корень)
         /// </summary>
         /// <param name="parent">Значение родительского элемента</param>
         /// <param name="value">Значение узла</param>
-
         public void AddNode(Node parent, T value)
         {
             if (parent == null)
@@ -125,7 +100,6 @@ namespace Lab4
             else
                 parent.AddChild(value);
         }
-
         /// <summary>
         /// Удаление узла из дереваc переносом дочерних элементов
         /// в родительский данного узла
@@ -138,7 +112,6 @@ namespace Lab4
             else
                 node.RemoveAll();
         }
-
         /// <summary>Удаление узла из дерева</summary>
         /// <param name="node">Удаляемый узел</param>
         public void RemoveNode(Node node)
@@ -148,7 +121,6 @@ namespace Lab4
             else
                 node.Remove();
         }
-
         /// <summary>Смена родительского элемента</summary>
         /// <param name="parent">Новый родитель</param>
         /// <param name="child">Ребенок</param>
@@ -157,12 +129,10 @@ namespace Lab4
             child.RemoveAll();
             parent.AdoptNode(child);
         }
-
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-
         public IEnumerator<Node> GetEnumerator()
         {
             return _root.GetEnumerator();

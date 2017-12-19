@@ -423,7 +423,7 @@
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(44, 41);
             this.button28.TabIndex = 30;
-            this.button28.Text = "И";
+            this.button28.Text = "&";
             this.button28.UseVisualStyleBackColor = true;
             this.button28.Click += new System.EventHandler(this.button1_Click);
             // 
