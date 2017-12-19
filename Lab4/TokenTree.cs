@@ -124,7 +124,7 @@ namespace Lab4
                                 opStack.Push(operation);
                                 break;
                             case "ln":
-                                operation.Value = new FloatOperation1(x => Math.Log10(x));
+                                operation.Value = new FloatOperation1(x => Math.Log(x));
                                 operation.AddChild(opStack.Pop());
                                 opStack.Push(operation);
                                 break;

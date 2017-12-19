@@ -52,9 +52,9 @@ namespace Lab4
 
         private void button18_Click(object sender, EventArgs e)
         {
-            double n = 1;
-            if (radioButtonDeg.Checked) n = 0.015708;
-            if (radioButtonRad.Checked) n = 0.0174533;
+            double n = new double();
+            if (radioButtonDeg.Checked) n = Math.PI/180;
+            if (radioButtonRad.Checked) n = 1;
             try
             {
                 Tokens t = new Tokens(textBox1.Text);
