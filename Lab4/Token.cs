@@ -28,9 +28,9 @@ namespace Lab4
             public Queue<Token> TokensQueue { get; private set; }
             List<String> Operators = new List<string>() { "!", "**", "*", "/", "%", "+", "-", ">", "<", ">=", "<=", "=", "!=", "&", "^", "|" };
 
-            public Tokens(String input)
+            public Tokens(String input,string constants)
             {
-                try { TokensQueue = SortStation(Tokenize(input)); }
+                try { TokensQueue = SortStation(Tokenize(input,constants)); }
                 catch { throw new Exception(); }
             }
 
@@ -39,15 +39,29 @@ namespace Lab4
                 return Operators.IndexOf(t1.TokenText).CompareTo(Operators.IndexOf(t2.TokenText));
             }
 
-            Queue<Token> Tokenize(string expression)
+            Queue<Token> Tokenize(string expression, string constants)
             {
                 Queue<Token> tokens = new Queue<Token>();
                 TokenType currentToken = TokenType.None;
-                Functions Constants = new Functions("const.dat");
+            /*List<List<string>> Constants = new List<List<string>>();
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook workBook;
+            Microsoft.Office.Interop.Excel.Worksheet workSheet;
+            workBook = excelApp.Workbooks.Open(@"C:\Users\lebox\Desktop\Учеба\ООП\Лаб.4\Lab.40\Lab4\Lab4\bin\Debug\Constants.xlsx");
+            workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Worksheets.get_Item(1);
+            int count = 1;
+            while (workSheet.Cells[count, 1].Text != "")
+            {
+                Constants.Add(new List<string> { workSheet.Cells[count, 1].Text, workSheet.Cells[count, 2].Text.Replace(",", ".") });
+                count++;
+            }
+            workBook.Save();
+            workBook.Close();
+            */
+            //Functions Constants = new Functions("const.dat");
                 string value = @"^(?<value>-?[0-9]*\.?[0-9]+)";
                 string operation = @"^(?<operator>(\*\*|\+|\-|\*|\/|\%|\=|\>\=|\<\=|\>|\<|\!\=|\&|\||\^|\!))";
                 string function = @"^(?<sign>-?)(?<func>(min|max|round|trunc|floor|ceil|sin|cos|tan|cotan|arcsin|arccos|arctan|ln|abs|sign))";
-                string constant = @"^(?<sign>-?)(?<const>(" + String.Join("|", Constants.Select(x => x.Name)) + "))";
                 expression = expression.Replace(' ', '\0');
                 while (expression.Length > 0)
                 {
@@ -69,9 +83,9 @@ namespace Lab4
                         tokens.Enqueue(new Token(match.Groups["func"].ToString(), currentToken));
                         expression = expression.Remove(0, match.Length);
                     }
-                    else if (Regex.IsMatch(expression, constant))
+                    else if (Regex.IsMatch(expression, constants))
                     {
-                        Match match = Regex.Match(expression, constant);
+                        Match match = Regex.Match(expression, constants);
                         if (match.Groups["sign"].ToString() == "-")
                             tokens.Enqueue(new Token(match.Groups["sign"].ToString(), TokenType.Negative));
                         currentToken = TokenType.Const;

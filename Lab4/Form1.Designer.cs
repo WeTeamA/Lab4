@@ -81,6 +81,16 @@
             this.radioButtonRad = new System.Windows.Forms.RadioButton();
             this.button47 = new System.Windows.Forms.Button();
             this.button48 = new System.Windows.Forms.Button();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxValue = new System.Windows.Forms.TextBox();
+            this.buttonAdd_const = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.listView = new System.Windows.Forms.ListView();
+            this.Const = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Volue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button49 = new System.Windows.Forms.Button();
+            this.button50 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -619,9 +629,10 @@
             // 
             this.radioButtonDeg.AutoSize = true;
             this.radioButtonDeg.Checked = true;
-            this.radioButtonDeg.Location = new System.Drawing.Point(13, 296);
+            this.radioButtonDeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonDeg.Location = new System.Drawing.Point(540, 355);
             this.radioButtonDeg.Name = "radioButtonDeg";
-            this.radioButtonDeg.Size = new System.Drawing.Size(43, 17);
+            this.radioButtonDeg.Size = new System.Drawing.Size(53, 20);
             this.radioButtonDeg.TabIndex = 51;
             this.radioButtonDeg.TabStop = true;
             this.radioButtonDeg.Text = "deg";
@@ -630,9 +641,10 @@
             // radioButtonRad
             // 
             this.radioButtonRad.AutoSize = true;
-            this.radioButtonRad.Location = new System.Drawing.Point(66, 296);
+            this.radioButtonRad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonRad.Location = new System.Drawing.Point(540, 329);
             this.radioButtonRad.Name = "radioButtonRad";
-            this.radioButtonRad.Size = new System.Drawing.Size(40, 17);
+            this.radioButtonRad.Size = new System.Drawing.Size(49, 20);
             this.radioButtonRad.TabIndex = 52;
             this.radioButtonRad.Text = "rad";
             this.radioButtonRad.UseVisualStyleBackColor = true;
@@ -659,11 +671,105 @@
             this.button48.UseVisualStyleBackColor = true;
             this.button48.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(12, 283);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(110, 20);
+            this.textBoxName.TabIndex = 55;
+            // 
+            // textBoxValue
+            // 
+            this.textBoxValue.Location = new System.Drawing.Point(144, 283);
+            this.textBoxValue.Name = "textBoxValue";
+            this.textBoxValue.Size = new System.Drawing.Size(110, 20);
+            this.textBoxValue.TabIndex = 56;
+            // 
+            // buttonAdd_const
+            // 
+            this.buttonAdd_const.Location = new System.Drawing.Point(262, 282);
+            this.buttonAdd_const.Name = "buttonAdd_const";
+            this.buttonAdd_const.Size = new System.Drawing.Size(144, 42);
+            this.buttonAdd_const.TabIndex = 57;
+            this.buttonAdd_const.Text = "добавить константу";
+            this.buttonAdd_const.UseVisualStyleBackColor = true;
+            this.buttonAdd_const.Click += new System.EventHandler(this.buttonAdd_const_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 306);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "Имя константы:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(141, 306);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 13);
+            this.label3.TabIndex = 59;
+            this.label3.Text = "Значение константы:";
+            // 
+            // listView
+            // 
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Const,
+            this.Volue});
+            this.listView.Location = new System.Drawing.Point(13, 342);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(306, 119);
+            this.listView.TabIndex = 60;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            // 
+            // Const
+            // 
+            this.Const.Text = "Константы";
+            this.Const.Width = 100;
+            // 
+            // Volue
+            // 
+            this.Volue.Text = "Значение";
+            this.Volue.Width = 200;
+            // 
+            // button49
+            // 
+            this.button49.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button49.Location = new System.Drawing.Point(162, 235);
+            this.button49.Name = "button49";
+            this.button49.Size = new System.Drawing.Size(44, 41);
+            this.button49.TabIndex = 61;
+            this.button49.Text = "pi";
+            this.button49.UseVisualStyleBackColor = true;
+            this.button49.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button50
+            // 
+            this.button50.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button50.Location = new System.Drawing.Point(112, 235);
+            this.button50.Name = "button50";
+            this.button50.Size = new System.Drawing.Size(44, 41);
+            this.button50.TabIndex = 62;
+            this.button50.Text = "e";
+            this.button50.UseVisualStyleBackColor = true;
+            this.button50.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 335);
+            this.ClientSize = new System.Drawing.Size(601, 473);
+            this.Controls.Add(this.button50);
+            this.Controls.Add(this.button49);
+            this.Controls.Add(this.listView);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonAdd_const);
+            this.Controls.Add(this.textBoxValue);
+            this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.button48);
             this.Controls.Add(this.button47);
             this.Controls.Add(this.radioButtonRad);
@@ -719,6 +825,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -779,6 +886,16 @@
         private System.Windows.Forms.RadioButton radioButtonRad;
         private System.Windows.Forms.Button button47;
         private System.Windows.Forms.Button button48;
+        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox textBoxValue;
+        private System.Windows.Forms.Button buttonAdd_const;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ColumnHeader Const;
+        private System.Windows.Forms.ColumnHeader Volue;
+        private System.Windows.Forms.Button button49;
+        private System.Windows.Forms.Button button50;
     }
 }
 

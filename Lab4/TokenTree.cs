@@ -13,22 +13,21 @@ namespace Lab4
         public Object Result { get; private set; }
         Tree<Operation>.Node Tree = new Tree<Operation>.Node();
 
-        public TokenTree(Queue<Token> input, double n)
+        public TokenTree(Queue<Token> input, double n, List<List<string>> Constants)
         {
             try
             {
                 multiplier = n;
-                Tree = CreateSyntaxTree(input);
+                Tree = CreateTokenTree(input,Constants);
                 Result = CalcTree(Tree);
             }
             catch { throw new Exception(); }
         }
 
-        Tree<Operation>.Node CreateSyntaxTree(Queue<Token> input)
+        Tree<Operation>.Node CreateTokenTree(Queue<Token> input, List<List<string>> Constants)
         {
             Stack<Tree<Operation>.Node> opStack = new Stack<Tree<Operation>.Node>();
             Tree<Operation>.Node operation;
-            Functions Constants = new Functions("const.dat");
             while (input.Count > 0)
             {
                 Token current = input.Dequeue();
@@ -47,7 +46,9 @@ namespace Lab4
                         break;
                     case TokenType.Const:
                         operation = new Tree<Operation>.Node();
-                        operation.Value = new FloatValue(double.Parse(Constants.First(x => x.Name == current.TokenText).Value, CultureInfo.InvariantCulture));
+                        operation.Value = new FloatValue(double.Parse(Constants.First(x => x[0] == current.TokenText)[1].Replace(',','.'), CultureInfo.InvariantCulture));
+                       // if ((Convert.ToDouble(operation.Value.ToString()) >= 3.1415) && Convert.ToDouble(operation.Value.ToString()) <= 3.1416)
+                       //     operation.Value =new FloatValue(Math.PI);
                         opStack.Push(operation);
                         break;
                     case TokenType.Function:
